@@ -1,21 +1,38 @@
 "use client";
+
 import { createContext, useContext, useState } from "react";
 
-const ClickContext = createContext();
+const ContadorContext = createContext({
+  contadorGlobal: 0,
+  incrementarGlobal: () => {},
+});
 
-export function ClickProvider({ children }) {
-  const [totalClicks, setTotalClicks] = useState(0);
-  const incrementarClicks = () => setTotalClicks((c) => c + 1);
+export function useContadorGlobal() {
+  return useContext(ContadorContext);
+}
+
+export function ContadorProvider({ children }) {
+  const [contadorGlobal, setContadorGlobal] = useState(0);
+
+  const incrementarGlobal = () => {
+    setContadorGlobal((prev) => prev + 1);
+  };
 
   return (
-    <ClickContext.Provider value={{ totalClicks, incrementarClicks }}>
+    <ContadorContext.Provider value={{ contadorGlobal, incrementarGlobal }}>
       {children}
-    </ClickContext.Provider>
+    </ContadorContext.Provider>
   );
 }
 
-export function useClickContext() {
-  return useContext(ClickContext);
+export function TotalClicks() {
+  const { contadorGlobal } = useContadorGlobal();
+
+  return (
+    <p className="bg-gray-700 text-white font-bold text-2xl w-18 h-10 flex justify-center items-center rounded-md mx-auto">
+      {contadorGlobal}
+    </p>
+  );
 }
 
 
