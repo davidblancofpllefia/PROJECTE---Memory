@@ -2,6 +2,8 @@
 import './globals.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from '../componentes/header';
+import { ClickProvider } from '../componentes/Contador';  
+
 
 export const metadata = {
   title: 'Proyecto Memory',
@@ -12,10 +14,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="es">
       <body className="bg-gray-50 text-gray-900">
-        <Header /> 
-        <main className="p-6 max-w-4xl mx-auto">{children}</main>
+        <ClickProvider>
+          <Header />
+          <main className="p-6 max-w-4xl mx-auto">{children}</main>
+        </ClickProvider>
       </body>
     </html>
   );
 }
+
 

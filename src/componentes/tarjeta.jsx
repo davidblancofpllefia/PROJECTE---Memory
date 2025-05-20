@@ -1,19 +1,22 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+"use client";
+import { useClickContext } from "@/componentes/Contador";
+import { useState } from 'react';
 
 export function Tarjeta({ nombre, imagen }) {
+  const { incrementarClicks } = useClickContext();
+  const [clicksPropios, setClicksPropios] = useState(0);
+
+  const manejarClick = () => {
+    setClicksPropios((c) => c + 1);
+    incrementarClicks();
+  };
+
   return (
-    <Card className="w-40 shadow-lg hover:scale-105 transition-transform cursor-pointer overflow-hidden">
-      <CardHeader className="p-0">
-        <img
-          src={imagen}
-          alt={`Imagen de ${nombre}`}
-          className="w-full h-40 object-cover rounded-t-lg"
-        />
-      </CardHeader>
-      <CardContent>
-        <CardTitle className="text-center text-sm">{nombre}</CardTitle>
-      </CardContent>
-    </Card>
+    <div onClick={manejarClick}>
+      <img src={imagen} alt={nombre} />
+      <p>{nombre}</p>
+      <p>Clicks: {clicksPropios}</p>
+    </div>
   );
 }
 
