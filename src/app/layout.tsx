@@ -1,7 +1,7 @@
 // app/layout.tsx
 import './globals.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Header from './componentes/header';
+import Header from '../componentes/header';
 
 export const metadata = {
   title: 'Proyecto Memory',

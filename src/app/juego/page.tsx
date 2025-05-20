@@ -1,10 +1,12 @@
-import BotonJugar from "../componentes/jugar";
+import { GrupoTarjetas } from "@/componentes/GrupoTarjetas";
 
 export default function HomePage() {
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-bold mb-4">Bienvenido al juego de memoria</h1>
-      <BotonJugar />
+    <div className="p-8">
+      <h1 className="text-2xl font-bold text-center mb-6">Memory</h1>
+      <GrupoTarjetas />
     </div>
   );
 }
+
+
