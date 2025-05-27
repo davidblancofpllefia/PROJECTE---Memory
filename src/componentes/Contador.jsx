@@ -14,9 +14,7 @@ export function useContadorGlobal() {
 export function ContadorProvider({ children }) {
   const [contadorGlobal, setContadorGlobal] = useState(0);
 
-  const incrementarGlobal = () => {
-    setContadorGlobal((prev) => prev + 1);
-  };
+  const incrementarGlobal = () => setContadorGlobal(prev => prev + 1);
 
   return (
     <ContadorContext.Provider value={{ contadorGlobal, incrementarGlobal }}>
@@ -30,7 +28,7 @@ export function TotalClicks() {
 
   return (
     <p className="bg-gray-700 text-white font-bold text-2xl w-18 h-10 flex justify-center items-center rounded-md mx-auto">
-      {contadorGlobal}
+      Clics: {contadorGlobal}
     </p>
   );
 }

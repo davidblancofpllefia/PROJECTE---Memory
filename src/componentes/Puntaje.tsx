@@ -1,6 +1,6 @@
 "use client";
-
-import { createContext, useContext, useState, ReactNode } from "react";
+import { ReactNode } from "react";
+import { createContext, useContext, useState } from "react";
 
 const PuntajeContext = createContext({
   puntaje: 0,
@@ -14,9 +14,7 @@ export function usePuntajeGlobal() {
 export function ProveedorPuntaje({ children }: { children: ReactNode }) {
   const [puntaje, setPuntaje] = useState(0);
 
-  const incrementarPuntaje = () => {
-    setPuntaje((prev) => prev + 10);
-  };
+  const incrementarPuntaje = () => setPuntaje(prev => prev + 10);
 
   return (
     <PuntajeContext.Provider value={{ puntaje, incrementarPuntaje }}>
@@ -30,7 +28,7 @@ export function PuntajeTotal() {
 
   return (
     <p className="bg-gray-700 text-white font-bold text-2xl w-18 h-10 flex justify-center items-center rounded-md mx-auto">
-      {puntaje}
+      Puntaje: {puntaje}
     </p>
   );
 }
