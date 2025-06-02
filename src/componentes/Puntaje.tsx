@@ -1,18 +1,27 @@
 "use client";
-import { ReactNode } from "react";
-import { createContext, useContext, useState } from "react";
 
-const PuntajeContext = createContext({
+import { createContext, useContext, useState, ReactNode } from "react";
+
+// Definimos el tipo del contexto
+interface PuntajeContextType {
+  puntaje: number;
+  incrementarPuntaje: () => void;
+}
+
+// Creamos el contexto con valor inicial dummy (lo sobrescribiremos con el provider)
+const PuntajeContext = createContext<PuntajeContextType>({
   puntaje: 0,
   incrementarPuntaje: () => {},
 });
 
+// Hook para acceder al contexto
 export function usePuntajeGlobal() {
   return useContext(PuntajeContext);
 }
 
+// Provider con typing en children
 export function ProveedorPuntaje({ children }: { children: ReactNode }) {
-  const [puntaje, setPuntaje] = useState(0);
+  const [puntaje, setPuntaje] = useState<number>(0);
 
   const incrementarPuntaje = () => setPuntaje(prev => prev + 10);
 
@@ -23,6 +32,7 @@ export function ProveedorPuntaje({ children }: { children: ReactNode }) {
   );
 }
 
+// Componente para mostrar el puntaje
 export function PuntajeTotal() {
   const { puntaje } = usePuntajeGlobal();
 

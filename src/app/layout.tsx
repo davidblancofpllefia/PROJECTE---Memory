@@ -27,17 +27,17 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <header>
-          <Header />
-        </header>
         <ContadorProvider>
           <ProveedorPuntaje>
-            {children}
+            <header>
+              <Header />
+            </header>
+            <main>
+              {children}
+            </main>
           </ProveedorPuntaje>
         </ContadorProvider>
       </body>
     </html>
   );
 }
-
-

@@ -1,6 +1,14 @@
 "use client";
 
-export function Tarjeta({ nombre, imagen, girada, onClick, emparejada }) {
+interface TarjetaProps {
+  nombre: string;
+  imagen: string;
+  girada: boolean;
+  emparejada: boolean;
+  onClick: () => void;
+}
+
+export function Tarjeta({ nombre, imagen, girada, onClick, emparejada }: TarjetaProps) {
   return (
     <div
       className={`w-24 h-32 shadow-lg cursor-pointer select-none rounded-lg overflow-hidden bg-gray-900
